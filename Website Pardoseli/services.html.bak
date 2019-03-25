@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>    
+	<title>Servicii | Oferte pardoseli industrializate - elicopterizatepardoselizate</title>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Va oferim cele mai bune preturi de pe piata pardoselilor industrializate atat pentru pardoseli interioare cat si exterioare, cereti o oferta.">
+	  <meta name="keywords" content="pardoseli interioare, pardoseala autoadeziva,pardoseala impermeabila,pardoseli elicopterizate,beton turnare pret,pret beton turnare, pret turnare, oferte turnare, servicii pardoseli industrializate, servicii pardoseli, oferte pardoseli, oferte pardoseli industrializate, oferte pardoseli elicopterizate, servicii beton, pret turnare beton,pret reparare beton, oferta reparare cuart,turnari beton cu cuart,pardoseli din beton pret">
+  	<meta name="author" content="Daniel Andrei">
+    <link rel="stylesheet" href="./css/style.css">
+  </head>
+  <body>
+ 
+
+
+    <header>
+      <div class="container">
+        <div id="branding">
+          <h1><span class="highlight">Pardoseli</span> industriale elicopterizate</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">ACASA</a></li>
+            <li><a href="portofoliu.html">PORTOFOLIU</a></li>
+            <li class="current"><a href="services.html">SERVICII</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section id="newsletter">
+      <div class="container">
+        <h1>Fiti la curent cu cele mai noi oferte!</h1>
+        <form>
+          <input type="email" placeholder="Enter Email...">
+          <button type="submit" class="button_1">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="main">
+      <div class="container">
+        <article id="main-col">
+          <h1 class="page-title">SERVICII</h1>
+          <ul id="services">
+            <li>
+              <h3>Website Design</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies at, vulputate id lorem. Nulla facilisi.</p>
+						  <p>Pricing: $1,000 - $3,000</p>
+            </li>
+            <li>
+              <h3>Website Maintenance</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies at, vulputate id lorem. Nulla facilisi.</p>
+						  <p>Pricing: $250 per month</p>
+            </li>
+            <li>
+              <h3>Website Hosting</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies at, vulputate id lorem. Nulla facilisi.</p>
+						  <p>Pricing: $25 per month</p>
+            </li>
+          </ul>
+        </article>
+
+        <aside id="sidebar">
+          <div class="dark">
+            <h3>Cere o oferta</h3>
+<?php include "connect.php";?>
+<?php include "db.php";?>
+
+<iframe name="votar" style="display:none;"></iframe>
+           <form class="quote" action='connect.php'  method="POST" target="votar" name="sampleform">
+  						<div>
+  							<label>Nume</label><br>
+  							<input type="text" name="Nume" placeholder="Nume">
+  						</div>
+						<div>
+  							<label>Numar</label><br>
+  							<input type="number" name="Numar" placeholder="Numar de telefon">
+  						</div>
+  						<div>
+  							<label>Email</label><br>
+  							<input type="email" name="Email" placeholder="Email Address">
+  						</div>
+  						<div>
+  							<label>Mesaj</label><br>
+  							<textarea type="text" name="Mesaj" placeholder="Mesaj"></textarea>
+  						</div>
+  						<button class="button_1" type="submit" name="submit" onclick="formSubmitter('sampleform', 'message')">Send</button>
+						<div id='message'></div>
+
+					</form>
+
+<script language="JavaScript">
+<!--
+function formSubmitter(formTag, messageTag){
+  document.getElementById(messageTag).innerHTML = "Mesajul a fost trimis.";
+  document.forms[formTag].submit();
+}
+// -->
+</script>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+    <footer>
+
+      <p>Copyright &copy; 2018</p>
+    </footer>
+  </body>
+</html>

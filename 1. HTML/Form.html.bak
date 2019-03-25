@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+    <title>My First Web Page</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+</head>
+
+<body>
+<div>  
+	<form>
+		<input type="text"  placeholder="Type here"/>
+		<input type="email"  placeholder="Type here"/>
+		<br /><br>
+		<textarea>My content goes here </textarea>
+				<textarea></textarea>		
+
+		<br/><br><br>
+
+		<select>
+		<option> What is your favorite color? </option>
+		<option> Blue </option>
+		<option> Red  </option>
+		<option> Green </option>
+		<option> Do not like a color </option>
+		</select>
+	
+		<br/> <br/>
+		<input type="radio" /> Red
+		<input type="radio" /> Green
+		
+		<br/> <br/>
+		<input type="radio" name="Colour"/> Red
+		<input type="radio" name="Colour"/> Green
+
+
+		<br/> <br/>
+		<input type="checkbox" /> Cat
+		<input type="checkbox" /> Dog
+
+		<br/> 		<br/> <br/>
+
+		<input type="Submit" value="Click me" />
+
+		
+	</form>
+
+
+	<a href="http://www.google.com">Google</a>
+	<p><a href="helloworld.html"> Hello World</a> </p>
+
+
+
+</div>  
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> JQUERY - Code Player </title>
+   <script type="text/Javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+  <script src="jquery-ui/jquery-ui.js"></script>
+  <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
+
+  
+	<style type="text/css">
+	
+	body{
+	margin:0;
+	padding:0;
+	}
+
+	#top-panel{
+	height:50px;
+	background-color:#EEEEEE;
+	
+	}
+	img{
+	width:100px;
+	height:50px;
+	float:left;
+	}
+
+	#logo{
+	font-size:30px;
+	font-weight:bold;
+	float:left;
+	margin-top:5px;
+	}
+	
+	li{
+	width:40%;
+	float:left;
+	padding:0;
+	margin-left:20%;
+	list-style-type: none
+	}
+	ol{
+	margin:0;
+	font-size:30px;
+	font-family:sans-serif;
+	padding-top:5px;
+	float:left;
+
+	}
+	a{
+	border:solid 1px grey;
+	padding:0 5px 0 5px;
+	float:left;
+	border-right:none;
+			text-decoration:none;
+
+	}
+
+	
+	
+	#html{
+	border-top-left-radius:4px;
+	border-bottom-left-radius:4px;
+	}
+	#output{
+	border-top-right-radius:4px;
+	border-bottom-right-radius:4px;
+	border-right:1px solid grey;
+	
+	}
+
+	.active{
+	background-color: azure;
+	
+	}
+
+	.highlightedButton{
+	background-color:beige;
+	}
+	
+	textarea{
+	resize: none;
+	border-top:none;
+	border-left:none;
+	border-bottom:none;
+	border-color:grey;
+	
+	}
+	.panel{
+	float:left;
+	width:50%;
+	}
+
+	iframe{
+	border:none;
+	}
+
+	
+	.hidden{
+	display:none;
+
+	
+	}
+	</style>
+ </head>
+
+ <body>
+	
+	<div id="top-panel">
+	
+	<img src="C:\Users\Dany\Desktop\WEB\My Websites\4. jQuery\Jsicon.png">
+	<div id="logo">CodePlayer</div>
+
+	<li>
+		<ol>
+			<a class="button active" id="html" >HTML</a>
+			<a class="button " id="css">CSS</a>
+			<a class="button " id="javascript">JavaScript</a>
+			<a class="button active" id="output">Output</a>
+
+		</ol>
+	</li>
+
+
+	</div>
+  
+  <div id="bodycontainer">
+		
+		<textarea id="htmlPanel" class="panel"><p>Hello world</p></textarea>
+		<textarea id="cssPanel"	class="panel hidden">p{color:green;}</textarea>
+		<textarea id="javascriptPanel" class="panel hidden">alert("Hi");</textarea>
+		<iframe id="outputPanel" class="panel"></iframe> 
+
+
+  </div>
+ <script type="text/javascript">  
+
+
+	function updateOutput(){
+	$("iframe").contents().find("html").html("<html><head><style type='text/css'>" + $("#cssPanel").val() + "</style></head><body>" + $("#htmlPanel").val() +  "<style type='text/javascript'>" + $("#javascriptPanel").val() + "</style></body></html>");
+
+	eval($("#javascriptPanel").val());
+	}
+
+
+	$(".button").hover(function(){
+	$(this).addClass("highlightedButton");
+	}, function () {
+	$(this).removeClass("highlightedButton")
+	});
+
+	$(".button").click(function(){
+	$(this).toggleClass("active");
+	$(this).removeClass("highlightedButton")
+	var panelID = $(this).attr("id") + "Panel";
+	$("#" + panelID).toggleClass("hidden");
+
+	var numberOfActivePanels = 4 - $(".hidden").length;
+
+	$(".panel").width($(window).width() /numberOfActivePanels - 10);
+	
+	});
+
+	$(".panel").height($(window).height() - $("#top-panel").height()- 3);
+
+	$(".panel").width($(window).width() /2 - 10);
+
+	$("iframe").contents().find("html").html($("#htmlPanel").val());
+	  
+	updateOutput();
+
+
+	$("textarea").on('change keyup paste', function(){
+	
+	updateOutput();
+
+
+	})
+
+
+
+
+
+
+  </script>
+ </body>
+</html>

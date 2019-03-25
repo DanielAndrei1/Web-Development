@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>New Game</title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+  <h1>What numer did I choose?</h1>
+  <input id="answer"/>
+  <button  id="submit">Submit</button> 
+
+
+	<script type="text/javascript">
+	document.getElementById("submit").onclick=function(){
+	var x;
+	var gotit=false;
+	var guesses=1;
+	while(gotit==false){
+			x=Math.random();
+			x=5*x;
+			x=Math.floor(x);
+				if(document.getElementById("answer").value==x){
+			    alert("Got it! It was "+x+" It only took me "+guesses+ " guesses!");
+				gotit=true;
+				}else {
+				guesses++;
+				if(guesses==50){
+					break;
+					alert("I give up :))")}
+				}
+			}
+	}
+	</script>
+ </body>
+</html>

@@ -1,0 +1,44 @@
+<?php header('Content-Type: text/html; charset=utf-8'); ?>
+
+<?php 
+
+$con= mysqli_connect('localhost', 'root', '');
+$db =mysqli_select_db($con,'contact');
+if ($con){
+    
+	echo "it is connected";
+	}else{
+	die('Error.');
+	}
+if ($db){
+    
+	echo "Succefully found the database";
+	}else{
+	die('Error.Database not found');
+	}
+	?>
+<?php header('Content-Type: text/html; charset=utf-8'); ?>
+
+
+
+	<?php
+if(isset($_POST['submit']))
+{
+$fname = $_POST['Nume'];
+$lname = $_POST['Email'];
+$mesaj = $_POST['Mesaj'];
+
+
+}
+
+$sql = "INSERT INTO info (nume, email, mesaj)
+VALUES ('$fname ', '$lname', '$mesaj ')";
+
+if ($con->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+
+?> 
