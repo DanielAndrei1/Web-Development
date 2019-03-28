@@ -1,0 +1,11 @@
+C:\Users\Dany\source\repos\Elevator\Elevator\obj\Debug\Elevator.csprojAssemblyReference.cache
+C:\Users\Dany\source\repos\Elevator\Elevator\obj\Debug\Elevator.Form1.resources
+C:\Users\Dany\source\repos\Elevator\Elevator\obj\Debug\Elevator.Properties.Resources.resources
+C:\Users\Dany\source\repos\Elevator\Elevator\obj\Debug\Elevator.csproj.GenerateResource.cache
+C:\Users\Dany\source\repos\Elevator\Elevator\obj\Debug\Elevator.csproj.CoreCompileInputs.cache
+C:\Users\Dany\source\repos\Elevator\Elevator\bin\Debug\Elevator.exe.config
+C:\Users\Dany\source\repos\Elevator\Elevator\bin\Debug\Elevator.exe
+C:\Users\Dany\source\repos\Elevator\Elevator\bin\Debug\Elevator.pdb
+C:\Users\Dany\source\repos\Elevator\Elevator\obj\Debug\Elevator.exe
+C:\Users\Dany\source\repos\Elevator\Elevator\obj\Debug\Elevator.pdb
+C:\Users\Dany\source\repos\Elevator\Elevator\bin\Debug\Database.mdb
