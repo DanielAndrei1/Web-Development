@@ -30,7 +30,8 @@
             private void InitializeComponent()
             {
             this.components = new System.ComponentModel.Container();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            System.Windows.Forms.Button Log;
+            this.bgw = new System.ComponentModel.BackgroundWorker();
             this.GoingUp = new System.Windows.Forms.Timer(this.components);
             this.GoingDown = new System.Windows.Forms.Timer(this.components);
             this.CloseDoorsLv1 = new System.Windows.Forms.Timer(this.components);
@@ -70,7 +71,6 @@
             this.ControlPanel = new System.Windows.Forms.Panel();
             this.OpenDoors = new System.Windows.Forms.PictureBox();
             this.CloseDoors = new System.Windows.Forms.PictureBox();
-            this.Log = new System.Windows.Forms.Button();
             this.arrowupcp = new System.Windows.Forms.PictureBox();
             this.arrowdowncp = new System.Windows.Forms.PictureBox();
             this.blanksigncp = new System.Windows.Forms.PictureBox();
@@ -81,11 +81,12 @@
             this.DataSet = new System.Windows.Forms.DataGridView();
             this.elevatorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.databaseDataSet1 = new Elevator.DatabaseDataSet1();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.elevatorTableAdapter2 = new Elevator.DatabaseDataSet1TableAdapters.ElevatorTableAdapter();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Log = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LeftDoorlv0)).BeginInit();
@@ -121,13 +122,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
-            // backgroundWorker1
+            // bgw
             // 
-            this.backgroundWorker1.WorkerReportsProgress = true;
-            this.backgroundWorker1.WorkerSupportsCancellation = true;
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            this.bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_DoWork);
             // 
             // GoingUp
             // 
@@ -156,7 +153,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(30, 30);
             this.button1.TabIndex = 9;
-            this.button1.Text = "0";
+            this.button1.Text = "1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -166,7 +163,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(30, 33);
             this.button2.TabIndex = 10;
-            this.button2.Text = "1";
+            this.button2.Text = "0";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -466,7 +463,7 @@
             this.ControlPanel.BackgroundImage = global::Elevator.Properties.Resources.BackgroundControl;
             this.ControlPanel.Controls.Add(this.OpenDoors);
             this.ControlPanel.Controls.Add(this.CloseDoors);
-            this.ControlPanel.Controls.Add(this.Log);
+            this.ControlPanel.Controls.Add(Log);
             this.ControlPanel.Controls.Add(this.arrowupcp);
             this.ControlPanel.Controls.Add(this.arrowdowncp);
             this.ControlPanel.Controls.Add(this.blanksigncp);
@@ -504,14 +501,14 @@
             // 
             // Log
             // 
-            this.Log.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.Log.Location = new System.Drawing.Point(151, 501);
-            this.Log.Name = "Log";
-            this.Log.Size = new System.Drawing.Size(75, 23);
-            this.Log.TabIndex = 27;
-            this.Log.Text = "Log";
-            this.Log.UseVisualStyleBackColor = false;
-            this.Log.Click += new System.EventHandler(this.Log_Click);
+            Log.BackColor = System.Drawing.SystemColors.ButtonFace;
+            Log.Location = new System.Drawing.Point(151, 501);
+            Log.Name = "Log";
+            Log.Size = new System.Drawing.Size(75, 23);
+            Log.TabIndex = 27;
+            Log.Text = "Log";
+            Log.UseVisualStyleBackColor = false;
+            Log.Click += new System.EventHandler(this.Log_Click);
             // 
             // arrowupcp
             // 
@@ -607,7 +604,7 @@
             this.DataSet.DataSource = this.elevatorBindingSource;
             this.DataSet.Location = new System.Drawing.Point(843, 48);
             this.DataSet.Name = "DataSet";
-            this.DataSet.Size = new System.Drawing.Size(445, 317);
+            this.DataSet.Size = new System.Drawing.Size(494, 547);
             this.DataSet.TabIndex = 4;
             this.DataSet.Visible = false;
             // 
@@ -616,29 +613,14 @@
             this.elevatorBindingSource.DataMember = "Elevator";
             this.elevatorBindingSource.DataSource = this.databaseDataSet1;
             // 
-        
             // databaseDataSet1
             // 
             this.databaseDataSet1.DataSetName = "DatabaseDataSet1";
             this.databaseDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // dataGridViewTextBoxColumn7
+            // elevatorTableAdapter2
             // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "Date and time";
-            this.dataGridViewTextBoxColumn7.HeaderText = "Date and time";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Floor";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Floor";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Request";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Request";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.elevatorTableAdapter2.ClearBeforeFill = true;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -646,15 +628,30 @@
             this.dataGridViewTextBoxColumn3.HeaderText = "ID";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
-            // elevatorTableAdapter2
+            // dataGridViewTextBoxColumn5
             // 
-            this.elevatorTableAdapter2.ClearBeforeFill = true;
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Request";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Request";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Floor";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Floor";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "Date and time";
+            this.dataGridViewTextBoxColumn7.HeaderText = "Date and time";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.Width = 150;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1454, 750);
+            this.ClientSize = new System.Drawing.Size(841, 750);
             this.Controls.Add(this.DataSet);
             this.Controls.Add(this.ControlPanel);
             this.Controls.Add(this.groupBox1);
@@ -700,7 +697,7 @@
     
 
             #endregion
-            private System.ComponentModel.BackgroundWorker backgroundWorker1;
+            private System.ComponentModel.BackgroundWorker bgw;
             private System.Windows.Forms.Timer GoingUp;
             private System.Windows.Forms.Timer GoingDown;
             private System.Windows.Forms.Timer CloseDoorsLv1;
@@ -709,7 +706,6 @@
             private System.Windows.Forms.PictureBox LeftDoorlv0;
             private System.Windows.Forms.PictureBox RightDoorlv0;
             private System.Windows.Forms.PictureBox pictureBox3;
-            private System.Windows.Forms.Button button1;
             private System.Windows.Forms.PictureBox pictureBox4;
             private System.Windows.Forms.Button button2;
             private System.Windows.Forms.GroupBox groupBox1;
@@ -739,7 +735,6 @@
             private System.Windows.Forms.PictureBox arrowupcp;
             private System.Windows.Forms.PictureBox leftdoor;
             private System.Windows.Forms.PictureBox rightdoor;
-            private System.Windows.Forms.Button Log;
             private System.Windows.Forms.BindingSource elevatorBindingSource;
             private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
             private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -750,12 +745,13 @@
             private System.Windows.Forms.PictureBox CloseDoors;
             private System.Windows.Forms.PictureBox OpenDoors;
         private System.Windows.Forms.DataGridView DataSet;
+        private DatabaseDataSet1 databaseDataSet1;
+        private DatabaseDataSet1TableAdapters.ElevatorTableAdapter elevatorTableAdapter2;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private DatabaseDataSet1 databaseDataSet1;
-        private DatabaseDataSet1TableAdapters.ElevatorTableAdapter elevatorTableAdapter2;
     }
 
 }

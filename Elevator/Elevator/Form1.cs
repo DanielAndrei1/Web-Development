@@ -26,12 +26,13 @@ namespace Elevator
         private bool picture6cliked = false;
         private bool picture7cliked = false;
         public static SpeechSynthesizer synth = new SpeechSynthesizer();
+        private bool dbinsert_lv1;
+        private bool dbinsert_lv0;
 
         public Form1()
         {
             InitializeComponent();
-            backgroundWorker1.WorkerReportsProgress = true;
-            backgroundWorker1.WorkerSupportsCancellation = true;
+            
 
         }
 
@@ -41,7 +42,7 @@ namespace Elevator
             // TODO: This line of code loads data into the 'databaseDataSet1.Elevator' table. You can move, or remove it, as needed.
             this.elevatorTableAdapter2.Fill(this.databaseDataSet1.Elevator);
 
-       
+
         }
 
 
@@ -65,7 +66,9 @@ namespace Elevator
 
         private static void VoiceGoingDown()
         {
+           
             synth.SpeakAsync("Going down!");
+            
         }
 
 
@@ -74,13 +77,17 @@ namespace Elevator
         private void PictureBox6_Click(object sender, EventArgs e) //Image click to go to Floor 0
         {
             picture6cliked = true;
+            dbinsert_lv0 = true;
 
-            VoiceGoingDown();
-            Database database = new Database();
-            database.Insert_req_lv0();
+            if (pictureBox1.Location.Y == pictureBox4.Location.Y)
+            {
+                VoiceGoingDown();
+            }
+
+            bgw.RunWorkerAsync();
             Refresh();
-          
-            
+
+
 
         }
 
@@ -88,10 +95,13 @@ namespace Elevator
         private void pictureBox7_Click(object sender, EventArgs e) //Image click to go to Floor 1
         {
             picture7cliked = true;
+            dbinsert_lv1 = true;
+            if (pictureBox1.Location.Y == RightDoorlv0.Location.Y)
+            {
+                VoiceGoingUp();
+            }
+            bgw.RunWorkerAsync();
 
-            VoiceGoingUp();
-            Database database = new Database();
-            database.Insert_reg_lv1();
             Refresh();
 
         }
@@ -99,9 +109,10 @@ namespace Elevator
 
         public void button1_Click(object sender, EventArgs e)
         {
+            dbinsert_lv1 = true;
             button1.BackColor = Color.Red;
-            Database database = new Database();
-            database.Insert_reg_lv1();
+            bgw.RunWorkerAsync();
+            
         }
 
 
@@ -110,9 +121,9 @@ namespace Elevator
 
         private void button2_Click(object sender, EventArgs e)
         {
+            dbinsert_lv0 = true;
             button2.BackColor = Color.Red;
-            Database database = new Database();
-            database.Insert_req_lv0();
+            bgw.RunWorkerAsync();
 
         }
 
@@ -347,6 +358,7 @@ namespace Elevator
                DataSet.Visible = true;
                this.Size = new Size(1372, 750); // making the form bigger 
 
+               
                string connetionString = null;
                OleDbConnection connection;
                OleDbDataAdapter oledbAdapter;
@@ -489,23 +501,62 @@ namespace Elevator
                }
            }
 
-         
-           private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-               {
 
-               }
+        // Using the background worker to complete the transaction to the database
+        private void bgw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            DateTime currentDate = DateTime.Now;
+            currentDate.ToString("d/m/yyyy");
+            string connetionString = null;
+            OleDbConnection connection;
+            connetionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Dany\source\repos\Elevator\Elevator\Database.mdb";
+            if (dbinsert_lv1 == true)
+            {
+                try
+                {
+                    connection = new OleDbConnection(connetionString);
+                    connection.Open();
+                    OleDbCommand command = new OleDbCommand();
+                    command.CommandText = "insert into Elevator( Request, Floor, [Date and time]) values( 'Request at floor 1', '1', @data)";
+                    command.Parameters.AddWithValue("@data", currentDate);
+                    command.Connection = connection;
 
-               private void backgroundWorker1_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
-               {
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                dbinsert_lv1 = false;
 
-               }
+            }
 
-               private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
-               {
+            if (dbinsert_lv0 == true)
+            {
 
-               }
+                try
+                {
+                    connection = new OleDbConnection(connetionString);
+                    connection.Open();
+                    OleDbCommand command = new OleDbCommand();
+                    command.Connection = connection;
+                    command.CommandText = "insert into Elevator( Request, Floor, [Date and time]) values( 'Request at floor 0', '0', @data)";
+                    command.Parameters.AddWithValue("@data", currentDate);
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                 dbinsert_lv0 = false;
 
-       }
+
+            }
+
+        }
+    }
    }
 
 
