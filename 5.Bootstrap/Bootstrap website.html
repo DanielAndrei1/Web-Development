@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>My First website</title>
+    <title>My First website using Bootstrap</title>
 
     <meta charset="utf-8" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
@@ -21,9 +21,28 @@
    background-image:url(36.jpg);
    text-align:center;
    }
-	.input{
-	margin-bottom:10px;
+	#app{
+	margin-left:25%;
+
 	}
+
+	#appstoreicon{
+	width:200px;
+
+	}
+
+
+	#footer {
+	background-color: aqua;
+	padding-top:50px;
+	margin-top:50px;
+	text-align:center;
+	padding-bottom:0;
+	margin-bottom:0;
+	height:200px;
+	}
+	
+
    </style>
 
 </head>
@@ -39,13 +58,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#jumbotron">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" href="#card-deck">About</a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="#">Download my App</a>
+        <a class="nav-link" href="#footer">Download my App</a>
       </li>
       
     </ul>
@@ -65,11 +84,61 @@
   <div class="input">
    
     <input type="email" class="form" placeholder="Your Email">
+	 </div>
+	<a class="btn btn-primary btn-lg" href="#" role="button">Join</a>
+	</div>
+
+<div class="container">
+
+	<div class="row" id="app">
+	<h1>Why our app is so awesome?</h1>
+	<h4> Summary, once again, of our awesomness... </h4>
+	</div>
+</div>
+
+<div class="container">
+
+	<div class="card-deck">
+		<div class="card">
+    <img src="C:\Users\Dany\Desktop\Image.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
   </div>
-  <a class="btn btn-primary btn-lg" href="#" role="button">Join</a>
+  <div class="card">
+    <img src="C:\Users\Dany\Desktop\Image.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="C:\Users\Dany\Desktop\Image.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+</div>
+</div>
+</div>
 </div>
 
 
+	<div id="footer">
+
+	 
+
+		<h2>Download the app!</h2>
+		
+
+		<p><a href=""><img id="appstoreicon" src="C:\Users\Dany\Desktop\App Store.png"></a></p>
+	
+	</div>
 
  </body>
 </html>

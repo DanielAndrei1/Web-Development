@@ -21,8 +21,9 @@
    background-image:url(36.jpg);
    text-align:center;
    }
-	.input-group mb-2 mr-sm-2{
-	
+	#app{
+	position:relative;
+	float:center;
 	}
    </style>
 
@@ -69,7 +70,14 @@
   <a class="btn btn-primary btn-lg" href="#" role="button">Join</a>
 </div>
 
+<div class="container">
 
+	<div class="row" id="app">
+	<h1>Why our app is so awesome</h1>
+
+	</div>
+
+</div>
 
  </body>
 </html>
