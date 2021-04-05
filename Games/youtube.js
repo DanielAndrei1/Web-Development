@@ -1,0 +1,390 @@
+document.getElementById("button").onclick = function(){
+    var input2 = document.getElementById("input").value;
+    if( input2 === "Daniel"){
+        document.getElementById("button").style.display = "none";
+
+
+    } else {
+        document.getElementById("button").style.backgroundColor = "Black";
+        document.getElementById("button").style.color = "White";
+        document.getElementById("button").innerHTML = "Hello there";
+
+    }
+
+};
+
+document.getElementById("labelName").onmouseover = function (){ mouseover()};
+
+function mouseover(){
+
+    document.getElementById("labelName").style.background = "yellow";
+};
+
+//Code for the color of the background change
+const colorPalet = ["#D7263D", "#02189B", "#0197F6", "#448FA3"];
+
+const btn = document.getElementsByClassName("btn")[0];
+
+const color = document.querySelector(".color");
+
+
+
+document.getElementsByClassName("btn")[0].onclick = function changeColor() {
+    let btnColor;
+       btnColor = Math.floor(Math.random() * colorPalet.length);
+       const btn2 = document.body.style.background = colorPalet[btnColor];
+    
+       let colour = colorPalet[btnColor].fontcolor(colorPalet[btnColor]);
+      let textColor = document.getElementById("label").innerHTML = "Color: " + colour;   
+};
+
+//Code for the image game
+
+const imageArray = ["Bunny1.png", "bunny2.png"];
+
+let gameDiv = document.getElementById("image");
+let imageTag = document.createElement("img");
+let time = document.getElementById("time");
+let reactionTime; let createdTime; let clickedTime;
+
+
+
+    imageTag.src = "Img/" + imageArray[0];
+    gameDiv.appendChild(imageTag);
+
+imageTag.addEventListener("click", function () {
+    
+    
+    clickedTime=Date.now();
+    reactionTime=(clickedTime-createdTime)/1000;
+    time.innerHTML = reactionTime;
+    this.style.display="none";
+    showImage();
+
+
+});
+
+function showImage() {
+
+    let randomNumber = Math.floor(Math.random() * imageArray.length)
+    imageTag.src = "Img/" + imageArray[randomNumber];
+   
+    let x = Math.random();
+    x = 3000 * x;
+    setTimeout(function() {
+    createdTime = Date.now();
+    imageTag.style.display = "block";
+    let top = Math.random();
+    let left = Math.random();
+    top *= 300;
+    left *= 500;
+    gameDiv.style.top=top+"px";
+    gameDiv.style.left=left+"px";
+
+
+   }, x)
+
+
+
+}
+ 
+// Chess game
+  const button = document.querySelector("#pawn7");
+
+let testClicked = false;
+const container = document.querySelector("#treeA");
+let x;
+
+button.addEventListener("click", async () =>{
+
+  testClicked = true;
+ // x = button.offsetLeft, button.offsetTop;
+
+  let pawn = document.getElementById("pawn7");
+ //let divContains_P = document.getElementById('treeA').contains(pawn);
+ //let divContains_pawn = document.getElementById("board").contains(pawn) && document.getElementById('treeA').contains(pawn);
+
+ console.log(x);
+  
+  test();
+})
+
+
+
+
+function test () {
+
+
+if(x === 60){
+
+  container.style.backgroundColor = "Green";
+
+}
+
+
+
+};
+
+ 
+$( function() {
+
+
+  $( "#pawn6" ).draggable({
+    axis: "y"
+    
+  });
+
+
+  $( ".PawnWhite" ).draggable({ snap: ".container", snapMode: "inner",
+                              stop: function(event, ui) { 
+    /* Get the possible snap targets: */
+    var snapped = $(this).data('ui-draggable').snapElements;
+   
+    /* Pull out only the snap targets that are "snapping": */
+    var snappedTo = $.map(snapped, function(element) {
+        return element.snapping ? element.item : null;
+    });
+   console.log(snappedTo);
+    /* Display the results: */
+    var result= '';
+    $.each(snappedTo, function(idx, item) {
+        result += $(item).text() + ", ";
+    });
+        console.log(result);
+
+    $("#results").html("Snapped to: " + (result === '' ? "Nothing!" : result));
+    
+
+    $("#pawn8").on("click", () =>{
+    if(result = "3b,"){
+      $("#treeA").css("background-color", "blue");
+      var result= ' ';
+
+    }else {
+      $("#treeA").css("background-color", "rgb(247, 247, 243)");
+      alert("hello");
+      var result= '';
+
+    }
+
+    if(result = "4a,"){
+      $("#pawn8").css("background-color", "purple");
+
+    }
+
+    } )
+    
+  }
+  
+  });
+  $( ".PawnBlack" ).draggable({ snap: ".container", snapMode: "inner",
+  stop: function(event, ui) { 
+/* Get the possible snap targets: */
+var snapped = $(this).data('ui-draggable').snapElements;
+
+/* Pull out only the snap targets that are "snapping": */
+var snappedTo = $.map(snapped, function(element) {
+return element.snapping ? element.item : null;
+});
+
+/* Display the results: */
+var result= '';
+$.each(snappedTo, function(idx, item) {
+result += $(item).text() + ", ";
+});
+console.log(result);
+
+$("#results").html("Snapped to: " + (result === '' ? "Nothing!" : result));
+
+
+}
+
+});
+  //$( "div" ).find( "#pawn8" ).css( "background-color", "red" ); makes piece red if on div
+    //setInterval($( "div:has(img)" ).addClass( "test" ),1000); make div blue if it has img
+   // $( "#twoB:has(#pawn7)" ).addClass( "test" );
+   //setInterval($( "#treeA:has(#pawn7)" ).addClass( "test" ), 1000); 
+  //  let element = $("#treeA");
+   //element.children(".PawnWhite").css("background-color","yellow");
+
+
+ 
+} );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+dragPawns.forEach(dragPawn =>{
+  dragPawn.addEventListener("dragstart", () => {
+
+    dragPawn.classList.add('dragging')
+
+  })
+
+  dragPawn.addEventListener("dragend", () =>{
+    dragPawn.classList.remove('dragging')
+    
+  })
+
+  container.addEventListener("touchstart", dragStart, false);
+  container.addEventListener("touchend", dragEnd, false);
+  container.addEventListener("touchmove", drag, false);
+  
+  container.addEventListener("mousedown", dragStart, false);
+  container.addEventListener("mouseup", dragEnd, false);
+  container.addEventListener("mousemove", drag, false)
+  
+  
+  function dragStart(e) {
+      if (e.type === "touchstart") {
+        initialX = e.touches[0].clientX - xOffset;
+        initialY = e.touches[0].clientY - yOffset;
+      } else {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+
+      }
+  
+      if (e.target === dragPawn) {
+        active = true;
+      }
+      
+    }
+  
+    function dragEnd(e) {
+     // initialX = currentX;
+     // initialY = currentY;
+  
+      active = false;
+    }
+  
+    function drag(e) {
+      if (active) {
+      
+        e.preventDefault();
+      
+        if (e.type === "touchmove") {
+          currentX = e.touches.clientX - initialX;
+          currentY = e.touches.clientY - initialY;
+
+        } else {
+          currentX = e.clientX - initialX;
+          currentY = e.clientY - initialY;
+      
+        }
+        
+      // xOffset = currentX;
+       // yOffset = currentY;
+
+        if (e.target === dragPawnB8){
+        setTranslate(currentX, currentY, dragPawnB8);
+
+      }else if (e.target === dragPawnB7){
+        setTranslate(currentX, currentY, dragPawnB7);
+
+      }else if (e.target === dragPawnB6){
+        setTranslate(currentX, currentY, dragPawnB6);
+
+      }else if (e.target === dragPawnB5){
+        setTranslate(currentX, currentY, dragPawnB5);
+
+      }else if (e.target === dragPawnB4){
+        setTranslate(currentX, currentY, dragPawnB4);
+
+      }else if (e.target === dragPawnB3){
+        setTranslate(currentX, currentY, dragPawnB3);
+
+      }else if (e.target === dragPawnB2){
+        setTranslate(currentX, currentY, dragPawnB3);
+
+      }else if (e.target === dragPawnB3){
+        setTranslate(currentX, currentY, dragPawnB3);
+
+      } 
+
+     
+    }
+  
+    function setTranslate(xPos, yPos, el) {
+      el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+    }
+  }
+  
+  
+
+});
+
+/*
+container.addEventListener("touchstart", dragStart, false);
+container.addEventListener("touchend", dragEnd, false);
+container.addEventListener("touchmove", drag, false);
+
+container.addEventListener("mousedown", dragStart, false);
+container.addEventListener("mouseup", dragEnd, false);
+container.addEventListener("mousemove", drag, false)
+
+
+function dragStart(e) {
+    if (e.type === "touchstart") {
+      initialX = e.touches[0].clientX - xOffset;
+      initialY = e.touches[0].clientY - yOffset;
+    } else {
+      initialX = e.clientX - xOffset;
+      initialY = e.clientY - yOffset;
+    }
+
+    if (e.target === dragItem) {
+      active = true;
+    }
+    
+  }
+
+  function dragEnd(e) {
+    initialX = currentX;
+    initialY = currentY;
+
+    active = false;
+  }
+
+  function drag(e) {
+    if (active) {
+    
+      e.preventDefault();
+    
+      if (e.type === "touchmove") {
+        currentX = e.touches[0].clientX - initialX;
+        currentY = e.touches[0].clientY - initialY;
+      } else {
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
+      }
+
+      xOffset = currentX;
+      yOffset = currentY;
+
+      setTranslate(currentX, currentY, dragItem);
+    }
+  }
+
+  function setTranslate(xPos, yPos, el) {
+    el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+  }
+
+*/
+
+
+  
